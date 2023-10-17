@@ -5,10 +5,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import AllExpensesScreen from "./screens/AllExpensesScreen";
 import OverbudgetScreen from "./screens/OverbudgetScreen";
 import TabNavigator from "./src/navigations/TabNavigator";
+import EntryItem from "./src/components/EntryItem";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const item = {
+    description: "Sample Item",
+    quantity: 6,
+    price: 100,
+  };
   return (
     // <NavigationContainer>
     //   <Stack.Navigator
@@ -30,9 +36,12 @@ export default function App() {
     //     <Stack.Screen name="Overbudget Expenses" component={OverbudgetScreen} />
     //   </Stack.Navigator>
     // </NavigationContainer>
-    <NavigationContainer>
-      <TabNavigator />
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <TabNavigator />
+    // </NavigationContainer>
+    <View style={styles.container}>
+      <EntryItem item={item} />
+    </View>
   );
 }
 
