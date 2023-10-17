@@ -10,8 +10,8 @@ import EntryItem from "./src/components/EntryItem";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const item = {
-    description: "Sample Item",
+  const entry = {
+    description: "Sample entry",
     quantity: 6,
     price: 100,
   };
@@ -40,7 +40,7 @@ export default function App() {
     //   <TabNavigator />
     // </NavigationContainer>
     <View style={styles.container}>
-      <EntryItem item={item} />
+      <EntryItem entry={entry} />
     </View>
   );
 }

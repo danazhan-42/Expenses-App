@@ -4,17 +4,20 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { colors } from "../../colors";
 
-export default function EntryItem({ item }) {
+export default function EntryItem({ entry, navigation }) {
   return (
-    <Pressable style={styles.container}>
-      <Text style={styles.text}>{item.description}</Text>
+    <Pressable
+      style={({ pressed }) => [styles.container, pressed && styles.pressed]}
+      onPress={() => navigation.navigate("AddEntry")}
+    >
+      <Text style={styles.text}>{entry.description}</Text>
       <View style={styles.expenseContainer}>
-        {item.quantity * item.price > 500 && (
+        {entry.quantity * entry.price > 500 && (
           <Ionicons name="warning" size={28} color="gold" />
         )}
         <View style={styles.expense}>
           <Text>
-            {item.quantity} * {item.price}
+            {entry.quantity} * {entry.price}
           </Text>
         </View>
       </View>
@@ -25,11 +28,15 @@ export default function EntryItem({ item }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.primary,
+    borderRadius: 10,
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
+  },
+  pressed: {
+    opacity: 0.8,
   },
   text: {
     color: "white",
