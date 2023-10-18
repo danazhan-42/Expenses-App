@@ -55,6 +55,14 @@ export default function TabNavigator({ navigation }) {
               color={color}
             />
           ),
+          headerRight: () => (
+            <Pressable
+              style={{ paddingRight: 10 }}
+              onPress={() => navigation.navigate("Add Expenses")}
+            >
+              <AntDesign name="plus" size={20} color="white" />
+            </Pressable>
+          ),
         }}
       />
     </Tab.Navigator>

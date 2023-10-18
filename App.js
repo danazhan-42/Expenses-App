@@ -30,11 +30,7 @@ export default function App() {
           component={TabNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Add Expenses"
-          component={AddExpenseScreen}
-          options={{ headerShown: false }}
-        />
+        <Stack.Screen name="Add Expenses" component={AddExpenseScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     // <View style={styles.container}>
