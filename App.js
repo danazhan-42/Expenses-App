@@ -17,15 +17,7 @@ export default function App() {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="All Expenses"
-        screenOptions={{
-          headerTitleAlign: "center",
-          headerStyle: { backgroundColor: "#483d8b" },
-          headerTintColor: "#fff",
-          headerTitleStyle: { fontWeight: "bold" },
-        }}
-      >
+      <Stack.Navigator>
         {/* Each screen component in your app is provided with the navigation prop automatically. */}
         {/* <Stack.Screen
           name="All Expenses"
@@ -42,8 +34,16 @@ export default function App() {
             ),
           }}
         /> */}
-        <Stack.Screen name="Entries" component={TabNavigator} />
-        <Stack.Screen name="Add Expenses" component={AddExpenseScreen} />
+        <Stack.Screen
+          name="Entries"
+          component={TabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Add Expenses"
+          component={AddExpenseScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
     // <View style={styles.container}>

@@ -17,6 +17,10 @@ export default function TabNavigator() {
         tabBarLabelStyle: {
           fontSize: 12,
         },
+        headerTitleAlign: "center",
+        headerStyle: { backgroundColor: "#483d8b" },
+        headerTintColor: "#fff",
+        headerTitleStyle: { fontWeight: "bold" },
       }}
     >
       <Tab.Screen
