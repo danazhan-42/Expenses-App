@@ -4,10 +4,12 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AllExpensesScreen from "../../screens/AllExpensesScreen";
 import OverbudgetScreen from "../../screens/OverbudgetScreen";
+import { Pressable } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
-export default function TabNavigator() {
+export default function TabNavigator({ navigation }) {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -30,6 +32,14 @@ export default function TabNavigator() {
           title: "All Expenses",
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
+          ),
+          headerRight: () => (
+            <Pressable
+              style={{ paddingRight: 10 }}
+              onPress={() => navigation.navigate("Add Expenses")}
+            >
+              <AntDesign name="plus" size={20} color="white" />
+            </Pressable>
           ),
         }}
       />

@@ -17,23 +17,14 @@ export default function App() {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* Each screen component in your app is provided with the navigation prop automatically. */}
-        {/* <Stack.Screen
-          name="All Expenses"
-          component={AllExpensesScreen}
-          options={{
-            title: "All Expenses",
-            headerRight: () => (
-              <Pressable
-                style={{ paddingRight: 10 }}
-                onPress={() => navigation.navigate("Add Expenses")}
-              >
-                <AntDesign name="plus" size={20} color="white" />
-              </Pressable>
-            ),
-          }}
-        /> */}
+      <Stack.Navigator
+        screenOptions={{
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: "#483d8b" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      >
         <Stack.Screen
           name="Entries"
           component={TabNavigator}
