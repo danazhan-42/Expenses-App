@@ -8,7 +8,7 @@ export default function EntryItem({ entry, navigation }) {
   return (
     <Pressable
       style={({ pressed }) => [styles.container, pressed && styles.pressed]}
-      onPress={() => navigation.navigate("AddEntry")}
+      onPress={() => navigation.navigate("Add Expenses")}
     >
       <Text style={styles.text}>{entry.description}</Text>
       <View style={styles.expenseContainer}>
