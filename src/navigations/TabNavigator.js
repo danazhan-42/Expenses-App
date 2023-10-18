@@ -6,6 +6,7 @@ import AllExpensesScreen from "../../screens/AllExpensesScreen";
 import OverbudgetScreen from "../../screens/OverbudgetScreen";
 import { Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { colors } from "../../colors";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,14 +14,14 @@ export default function TabNavigator({ navigation }) {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveBackgroundColor: "#483d8b",
-        tabBarInactiveBackgroundColor: "#483d8b",
+        tabBarActiveBackgroundColor: colors.primary,
+        tabBarInactiveBackgroundColor: colors.primary,
         tabBarActiveTintColor: "gold",
         tabBarLabelStyle: {
           fontSize: 12,
         },
         headerTitleAlign: "center",
-        headerStyle: { backgroundColor: "#483d8b" },
+        headerStyle: { backgroundColor: colors.primary },
         headerTintColor: "#fff",
         headerTitleStyle: { fontWeight: "bold" },
         headerRight: () => (
