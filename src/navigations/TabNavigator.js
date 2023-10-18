@@ -23,6 +23,14 @@ export default function TabNavigator({ navigation }) {
         headerStyle: { backgroundColor: "#483d8b" },
         headerTintColor: "#fff",
         headerTitleStyle: { fontWeight: "bold" },
+        headerRight: () => (
+          <Pressable
+            style={{ paddingRight: 10 }}
+            onPress={() => navigation.navigate("Add Expenses")}
+          >
+            <AntDesign name="plus" size={20} color="white" />
+          </Pressable>
+        ),
       }}
     >
       <Tab.Screen
@@ -32,14 +40,6 @@ export default function TabNavigator({ navigation }) {
           title: "All Expenses",
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
-          ),
-          headerRight: () => (
-            <Pressable
-              style={{ paddingRight: 10 }}
-              onPress={() => navigation.navigate("Add Expenses")}
-            >
-              <AntDesign name="plus" size={20} color="white" />
-            </Pressable>
           ),
         }}
       />
@@ -54,14 +54,6 @@ export default function TabNavigator({ navigation }) {
               size={size}
               color={color}
             />
-          ),
-          headerRight: () => (
-            <Pressable
-              style={{ paddingRight: 10 }}
-              onPress={() => navigation.navigate("Add Expenses")}
-            >
-              <AntDesign name="plus" size={20} color="white" />
-            </Pressable>
           ),
         }}
       />
