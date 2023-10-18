@@ -1,10 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import AllExpensesScreen from "./src/screens/AllExpensesScreen";
 import AddExpenseScreen from "./src/screens/AddExpenseScreen";
 import { AntDesign } from "@expo/vector-icons";
+import TabNavigator from "./src/navigations/TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,16 +27,22 @@ export default function App() {
         }}
       >
         {/* Each screen component in your app is provided with the navigation prop automatically. */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name="All Expenses"
           component={AllExpensesScreen}
           options={{
             title: "All Expenses",
             headerRight: () => (
-              <AntDesign name="plus" size={32} color="black" />
+              <Pressable
+                style={{ paddingRight: 10 }}
+                onPress={() => navigation.navigate("Add Expenses")}
+              >
+                <AntDesign name="plus" size={20} color="white" />
+              </Pressable>
             ),
           }}
-        />
+        /> */}
+        <Stack.Screen name="Entries" component={TabNavigator} />
         <Stack.Screen name="Add Expenses" component={AddExpenseScreen} />
       </Stack.Navigator>
     </NavigationContainer>
