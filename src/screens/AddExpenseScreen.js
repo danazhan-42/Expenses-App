@@ -7,7 +7,6 @@ import DropDownPicker from "react-native-dropdown-picker";
 export default function AddExpenseScreen({ navigation }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
 
   const numbers = [];
   for (let i = 1; i <= 10; i++) {
@@ -21,7 +20,7 @@ export default function AddExpenseScreen({ navigation }) {
   const handleCancel = () => {
     setName("");
     setPrice("");
-    setQuantity("");
+    setValue(null);
     navigation.goBack();
   };
 
