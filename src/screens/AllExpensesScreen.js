@@ -6,7 +6,7 @@ export default function AllExpensesScreen({ navigation }) {
   const [expenses, setExpenses] = useState([]);
   return (
     <View style={styles.container}>
-      <EntriesList entries={expenses} navigation={navigation}></EntriesList>
+      <EntriesList entries={expenses} navigation={navigation} ></EntriesList>
     </View>
   );
 }

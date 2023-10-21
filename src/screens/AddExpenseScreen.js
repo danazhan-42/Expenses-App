@@ -2,11 +2,19 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../../colors";
 import PressableButton from "../components/PressableButton";
+import DropDownPicker from "react-native-dropdown-picker";
 
 export default function AddExpenseScreen({ navigation }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+  ]);
 
   const handleSubmit = () => {};
   const handleCancel = () => {
@@ -28,21 +36,24 @@ export default function AddExpenseScreen({ navigation }) {
         keyboardType="numeric"
       />
       <Text style={styles.text}>Quantity*</Text>
-      <TextInput
+      {/* <TextInput
         style={styles.input}
         value={quantity}
         onChangeText={setQuantity}
         keyboardType="numeric"
+      /> */}
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
       />
       <View style={styles.bottomContainer}>
         <View style={styles.button}>
-          <PressableButton>
-            <Text
-              onPress={handleCancel}
-              style={{ color: "#fff", fontSize: 16 }}
-            >
-              Cancel
-            </Text>
+          <PressableButton onPress={handleCancel}>
+            <Text style={{ color: "#fff", fontSize: 16 }}>Cancel</Text>
           </PressableButton>
           <PressableButton>
             <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
