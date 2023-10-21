@@ -8,6 +8,14 @@ export default function AddExpenseScreen({ navigation }) {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
 
+  const handleSubmit = () => {};
+  const handleCancel = () => {
+    setName("");
+    setPrice("");
+    setQuantity("");
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>item *</Text>
@@ -29,7 +37,12 @@ export default function AddExpenseScreen({ navigation }) {
       <View style={styles.bottomContainer}>
         <View style={styles.button}>
           <PressableButton>
-            <Text style={{ color: "#fff", fontSize: 16 }}>Cancel</Text>
+            <Text
+              onPress={handleCancel}
+              style={{ color: "#fff", fontSize: 16 }}
+            >
+              Cancel
+            </Text>
           </PressableButton>
           <PressableButton>
             <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
