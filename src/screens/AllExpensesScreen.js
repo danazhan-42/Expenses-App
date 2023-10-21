@@ -1,13 +1,12 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import EntriesList from "../components/EntriesList";
 
 export default function AllExpensesScreen({ navigation }) {
+  const [expenses, setExpenses] = useState([]);
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => navigation.navigate("Add Expenses")}>
-        <Text>Go to AddExpenses</Text>
-      </Pressable>
+      <EntriesList entries={expenses} navigation={navigation}></EntriesList>
     </View>
   );
 }
