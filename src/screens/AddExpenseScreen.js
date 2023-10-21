@@ -9,12 +9,13 @@ export default function AddExpenseScreen({ navigation }) {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
 
+  const numbers = [];
+  for (let i = 1; i <= 10; i++) {
+    numbers.push({ label: i.toString(), value: i });
+  }
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "1", value: "1" },
-    { label: "2", value: "2" },
-  ]);
+  const [items, setItems] = useState(numbers);
 
   const handleSubmit = () => {};
   const handleCancel = () => {
