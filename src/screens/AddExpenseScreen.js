@@ -50,6 +50,9 @@ export default function AddExpenseScreen({ navigation }) {
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
+        containerStyle={{
+          width: "90%",
+        }}
       />
       <View style={styles.bottomContainer}>
         <View style={styles.button}>
