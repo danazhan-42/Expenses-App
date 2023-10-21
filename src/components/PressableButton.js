@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet } from "react-native";
 import React from "react";
+import { colors } from "../../colors";
 
 export default function PressableButton({
   children,
@@ -22,5 +23,11 @@ export default function PressableButton({
 }
 
 const styles = StyleSheet.create({
-  styleByDefault: {},
+  styleByDefault: {
+    backgroundColor: colors.primary,
+    borderRadius: 5,
+    padding: 5,
+    width: 120,
+    alignItems: "center",
+  },
 });

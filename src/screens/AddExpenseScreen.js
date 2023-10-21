@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../../colors";
+import PressableButton from "../components/PressableButton";
 
 export default function AddExpenseScreen({ navigation }) {
   const [name, setName] = useState("");
@@ -25,11 +26,27 @@ export default function AddExpenseScreen({ navigation }) {
         onChangeText={setQuantity}
         keyboardType="numeric"
       />
+      <View style={styles.bottomContainer}>
+        <View style={styles.button}>
+          <PressableButton>
+            <Text style={{ color: "#fff", fontSize: 16 }}>Cancel</Text>
+          </PressableButton>
+          <PressableButton>
+            <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
+          </PressableButton>
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  bottomContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    //backgroundColor: "tomato",
+  },
   container: {
     flex: 1,
     backgroundColor: colors.secondary,
@@ -53,5 +70,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 5,
     marginBottom: 10,
+  },
+  button: {
+    flexDirection: "row",
+    width: "90%",
+    justifyContent: "space-evenly",
   },
 });
