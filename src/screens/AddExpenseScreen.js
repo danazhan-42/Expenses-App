@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../../colors";
 import PressableButton from "../components/PressableButton";
@@ -16,7 +16,11 @@ export default function AddExpenseScreen({ navigation }) {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState(numbers);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (data) => {
+    if (!name || !price || isNaN(price) || Number(price) < 0 || !value) {
+      Alert.alert("Invalid input", "Please check your input values");
+    }
+  };
   const handleCancel = () => {
     setName("");
     setPrice("");
