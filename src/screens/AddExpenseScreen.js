@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { colors } from "../../colors";
 import PressableButton from "../components/PressableButton";
 import DropDownPicker from "react-native-dropdown-picker";
+import { writeToDB } from "../firebase/firebaseHelper";
 
 export default function AddExpenseScreen({ navigation }) {
   const [name, setName] = useState("");
@@ -19,7 +20,17 @@ export default function AddExpenseScreen({ navigation }) {
   const handleSubmit = (data) => {
     if (!name || !price || isNaN(price) || Number(price) < 0 || !value) {
       Alert.alert("Invalid input", "Please check your input values");
+      return;
     }
+
+    const newExpense = {
+      itemName: name,
+      unitPrice: price,
+      quantity: value,
+    };
+
+    writeToDB(newExpense);
+    navigation.goBack();
   };
   const handleCancel = () => {
     setName("");
@@ -59,10 +70,10 @@ export default function AddExpenseScreen({ navigation }) {
       />
       <View style={styles.bottomContainer}>
         <View style={styles.button}>
-          <PressableButton onPress={handleCancel}>
+          <PressableButton pressedFunction={handleCancel}>
             <Text style={{ color: "#fff", fontSize: 16 }}>Cancel</Text>
           </PressableButton>
-          <PressableButton>
+          <PressableButton pressedFunction={handleSubmit}>
             <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
           </PressableButton>
         </View>
