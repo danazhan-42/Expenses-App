@@ -15,7 +15,6 @@ export default function EntriesList({ entries, navigation, overLimit }) {
         renderItem={({ item }) => {
           return <EntryItem entry={item} navigation={navigation} />;
         }}
-        keyExtractor={(item) => item.id}
       />
     </View>
   );
