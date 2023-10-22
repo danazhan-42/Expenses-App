@@ -5,9 +5,10 @@ import PressableButton from "../components/PressableButton";
 import DropDownPicker from "react-native-dropdown-picker";
 import { writeToDB } from "../firebase/firebaseHelper";
 
-export default function AddExpenseScreen({ navigation }) {
+export default function AddExpenseScreen({ navigation, route }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const isEditMode = route.params && route.params.entry;
 
   const numbers = [];
   for (let i = 1; i <= 10; i++) {
@@ -77,6 +78,7 @@ export default function AddExpenseScreen({ navigation }) {
           <PressableButton pressedFunction={handleSubmit}>
             <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
           </PressableButton>
+          <Text>{isEditMode ? "Edit" : "Add"}</Text>
         </View>
       </View>
     </View>
