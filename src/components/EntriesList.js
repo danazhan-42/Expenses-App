@@ -9,7 +9,7 @@ export default function EntriesList({ entries, navigation, overLimit }) {
       <FlatList
         data={
           overLimit
-            ? entries.filter((entry) => entry.quantity * entry.price > 500)
+            ? entries.filter((entry) => entry.quantity * entry.unitPrice > 500)
             : entries
         }
         renderItem={({ item }) => {
