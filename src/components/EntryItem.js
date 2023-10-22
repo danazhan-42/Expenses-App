@@ -10,14 +10,14 @@ export default function EntryItem({ entry, navigation }) {
       style={({ pressed }) => [styles.container, pressed && styles.pressed]}
       onPress={() => navigation.navigate("Add Expenses")}
     >
-      <Text style={styles.text}>{entry.description}</Text>
+      <Text style={styles.text}>{entry.itemName}</Text>
       <View style={styles.expenseContainer}>
         {entry.quantity * entry.price > 500 && (
           <Ionicons name="warning" size={28} color="gold" />
         )}
         <View style={styles.expense}>
           <Text>
-            {entry.quantity} * {entry.price}
+            {entry.quantity} * {entry.unitPrice}
           </Text>
         </View>
       </View>

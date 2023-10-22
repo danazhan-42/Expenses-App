@@ -12,9 +12,10 @@ export default function EntriesList({ entries, navigation, overLimit }) {
             ? entries.filter((entry) => entry.quantity * entry.price > 500)
             : entries
         }
-        renderItem={({ entry }) => {
-          return <EntryItem entry={entry} navigation={navigation} />;
+        renderItem={({ item }) => {
+          return <EntryItem entry={item} navigation={navigation} />;
         }}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );

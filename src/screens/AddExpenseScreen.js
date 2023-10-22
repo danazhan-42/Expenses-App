@@ -32,6 +32,7 @@ export default function AddExpenseScreen({ navigation }) {
     writeToDB(newExpense);
     navigation.goBack();
   };
+
   const handleCancel = () => {
     setName("");
     setPrice("");
