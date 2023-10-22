@@ -12,7 +12,7 @@ export default function EntryItem({ entry, navigation }) {
     >
       <Text style={styles.text}>{entry.itemName}</Text>
       <View style={styles.expenseContainer}>
-        {entry.quantity * entry.price > 500 && (
+        {entry.quantity * entry.unitPrice > 500 && (
           <Ionicons name="warning" size={28} color="gold" />
         )}
         <View style={styles.expense}>
@@ -53,5 +53,6 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingLeft: 10,
     paddingRight: 10,
+    marginLeft: 5,
   },
 });
