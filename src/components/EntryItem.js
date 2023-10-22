@@ -27,13 +27,13 @@ export default function EntryItem({ entry, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     backgroundColor: colors.primary,
     borderRadius: 10,
-    flexDirection: "row",
-    width: "90%",
-    justifyContent: "space-between",
-    alignItems: "center",
     padding: 10,
+    margin: 10,
   },
   pressed: {
     opacity: 0.8,

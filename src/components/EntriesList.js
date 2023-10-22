@@ -1,11 +1,11 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import React from "react";
 
 import EntryItem from "./EntryItem";
 
 export default function EntriesList({ entries, navigation, overLimit }) {
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={
           overLimit
@@ -20,3 +20,11 @@ export default function EntriesList({ entries, navigation, overLimit }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignContent: "center",
+    margin: 10,
+  },
+});
