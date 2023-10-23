@@ -18,7 +18,7 @@ export default function AddExpenseScreen({ navigation, route }) {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState(numbers);
 
-  const handleSubmit = (data) => {
+  const handleSubmit = () => {
     if (!name || !price || isNaN(price) || Number(price) < 0 || !value) {
       Alert.alert("Invalid input", "Please check your input values");
       return;
@@ -39,6 +39,14 @@ export default function AddExpenseScreen({ navigation, route }) {
     setPrice("");
     setValue(null);
     navigation.goBack();
+  };
+
+  const handleUpdate = () => {
+    if (!name || !price || isNaN(price) || Number(price) < 0 || !value) {
+      Alert.alert("Invalid input", "Please check your input values");
+      return;
+    }
+    Alert.alert("Important", "Are you sure you want to save the changes?");
   };
 
   return (
