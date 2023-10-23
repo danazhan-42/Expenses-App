@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import AddExpenseScreen from "../screens/AddExpenseScreen";
 import TabNavigator from "./TabNavigator";
+import { AntDesign } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,7 +29,22 @@ export default function App() {
           component={TabNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Add Expenses" component={AddExpenseScreen} />
+        <Stack.Screen
+          name="Add Expenses"
+          component={AddExpenseScreen}
+          options={({ route }) => ({
+            title:
+              route.params && route.params.entry ? "Edit" : "Add an Expense",
+            headerRight: () => (
+              <Pressable
+                style={{ paddingRight: 10 }}
+                onPress={() => navigation.navigate("Add Expenses")}
+              >
+                <AntDesign name="delete" size={20} color="white" />
+              </Pressable>
+            ),
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
     // <View style={styles.container}>
