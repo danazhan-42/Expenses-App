@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { colors } from "../../colors";
 import PressableButton from "../components/PressableButton";
 import DropDownPicker from "react-native-dropdown-picker";
-import { writeToDB } from "../firebase/firebaseHelper";
+import { writeToDB, updateToDB } from "../firebase/firebaseHelper";
 
 export default function AddExpenseScreen({ navigation, route }) {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [name, setName] = useState(route.params?.entry?.itemName || "");
+  const [price, setPrice] = useState(route.params?.entry?.unitPrice || "");
   const isEditMode = route.params && route.params.entry;
 
   const numbers = [];
@@ -15,7 +15,7 @@ export default function AddExpenseScreen({ navigation, route }) {
     numbers.push({ label: i.toString(), value: i });
   }
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(route.params?.entry?.quantity || null);
   const [items, setItems] = useState(numbers);
 
   const handleSubmit = () => {
@@ -47,6 +47,13 @@ export default function AddExpenseScreen({ navigation, route }) {
       return;
     }
     Alert.alert("Important", "Are you sure you want to save the changes?");
+    const newExpense = {
+      itemName: name,
+      unitPrice: price,
+      quantity: value,
+    };
+    updateToDB(newExpense);
+    navigation.goBack();
   };
 
   return (
