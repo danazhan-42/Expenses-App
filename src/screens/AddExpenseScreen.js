@@ -46,14 +46,21 @@ export default function AddExpenseScreen({ navigation, route }) {
       Alert.alert("Invalid input", "Please check your input values");
       return;
     }
-    Alert.alert("Important", "Are you sure you want to save the changes?");
-    const newExpense = {
-      itemName: name,
-      unitPrice: price,
-      quantity: value,
-    };
-    updateToDB(newExpense);
-    navigation.goBack();
+    Alert.alert("Important", "Are you sure you want to save the changes?", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Yes",
+        onPress: () => {
+          const updateExpense = {
+            itemName: name,
+            unitPrice: price,
+            quantity: value,
+          };
+          updateToDB(route.params.entry.id, updateExpense);
+          navigation.goBack();
+        },
+      },
+    ]);
   };
 
   return (
@@ -90,7 +97,9 @@ export default function AddExpenseScreen({ navigation, route }) {
           <PressableButton pressedFunction={handleCancel}>
             <Text style={{ color: "#fff", fontSize: 16 }}>Cancel</Text>
           </PressableButton>
-          <PressableButton pressedFunction={handleSubmit}>
+          <PressableButton
+            pressedFunction={isEditMode ? handleUpdate : handleSubmit}
+          >
             <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
           </PressableButton>
           <Text>{isEditMode ? "Edit" : "Add"}</Text>

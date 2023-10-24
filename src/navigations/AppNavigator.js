@@ -5,15 +5,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import AddExpenseScreen from "../screens/AddExpenseScreen";
 import TabNavigator from "./TabNavigator";
 import { AntDesign } from "@expo/vector-icons";
+import { deleteToDB } from "../firebase/firebaseHelper";
+import { firestore } from "firebase";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const entry = {
-    description: "Sample entry",
-    quantity: 6,
-    price: 100,
-  };
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -32,13 +29,22 @@ export default function App() {
         <Stack.Screen
           name="Add Expenses"
           component={AddExpenseScreen}
-          options={({ route }) => ({
+          options={({ route, navigation }) => ({
             title:
               route.params && route.params.entry ? "Edit" : "Add an Expense",
             headerRight: () => (
               <Pressable
                 style={{ paddingRight: 10 }}
-                onPress={() => navigation.navigate("Add Expenses")}
+                onPress={async () => {
+                  if (
+                    route.params &&
+                    route.params.entry &&
+                    route.params.entry.id
+                  ) {
+                    await deleteToDB(route.params.entry.id);
+                    navigation.navigate("Entries");
+                  }
+                }}
               >
                 <AntDesign name="delete" size={20} color="white" />
               </Pressable>
