@@ -7,6 +7,7 @@ import { QuerySnapshot, collection, onSnapshot } from "firebase/firestore";
 
 export default function AllExpensesScreen({ navigation }) {
   const [expenses, setExpenses] = useState([]);
+
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(database, "entries"),

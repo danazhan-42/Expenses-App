@@ -4,10 +4,12 @@ import { colors } from "../../colors";
 import PressableButton from "../components/PressableButton";
 import DropDownPicker from "react-native-dropdown-picker";
 import { writeToDB, updateToDB } from "../firebase/firebaseHelper";
+import Checkbox from "expo-checkbox";
 
 export default function AddExpenseScreen({ navigation, route }) {
   const [name, setName] = useState(route.params?.entry?.itemName || "");
   const [price, setPrice] = useState(route.params?.entry?.unitPrice || "");
+  const [isChecked, setChecked] = useState(false);
   const isEditMode = route.params && route.params.entry;
 
   const numbers = [];
@@ -75,12 +77,6 @@ export default function AddExpenseScreen({ navigation, route }) {
         keyboardType="numeric"
       />
       <Text style={styles.text}>Quantity*</Text>
-      {/* <TextInput
-        style={styles.input}
-        value={quantity}
-        onChangeText={setQuantity}
-        keyboardType="numeric"
-      /> */}
       <DropDownPicker
         open={open}
         value={value}
@@ -93,6 +89,17 @@ export default function AddExpenseScreen({ navigation, route }) {
         }}
       />
       <View style={styles.bottomContainer}>
+        <View style={styles.checkboxContainer}>
+          <Text>
+            This item is marked as overbudget. Select the checkbox if you would
+            like to approve it
+          </Text>
+          <Checkbox
+            value={isChecked}
+            onValueChange={setChecked}
+            style={styles.checkbox}
+          />
+        </View>
         <View style={styles.button}>
           <PressableButton pressedFunction={handleCancel}>
             <Text style={{ color: "#fff", fontSize: 16 }}>Cancel</Text>
@@ -102,7 +109,6 @@ export default function AddExpenseScreen({ navigation, route }) {
           >
             <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
           </PressableButton>
-          <Text>{isEditMode ? "Edit" : "Add"}</Text>
         </View>
       </View>
     </View>
@@ -122,6 +128,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 50,
     paddingHorizontal: 10,
+  },
+  checkbox: {
+    marginLeft: 10,
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 20,
   },
   text: {
     color: colors.primary,
