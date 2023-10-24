@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   text: {
-    color: "white",
+    color: colors.white,
     fontWeight: "bold",
   },
   expenseContainer: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   expense: {
-    backgroundColor: "white",
+    backgroundColor: colors.white,
     padding: 5,
     paddingLeft: 10,
     paddingRight: 10,

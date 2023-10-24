@@ -121,14 +121,14 @@ export default function AddExpenseScreen({ navigation, route }) {
             defaultStyle={styles.buttonDefault}
             pressedStyle={styles.buttonPressed}
           >
-            <Text style={{ color: "#fff", fontSize: 16 }}>Cancel</Text>
+            <Text style={styles.buttonText}>Cancel</Text>
           </PressableButton>
           <PressableButton
             pressedFunction={isEditMode ? handleUpdate : handleSubmit}
             defaultStyle={styles.buttonDefault}
             pressedStyle={styles.buttonPressed}
           >
-            <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
+            <Text style={styles.buttonText}>Save</Text>
           </PressableButton>
         </View>
       </View>
@@ -145,11 +145,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonPressed: { opacity: 0.8 },
+  buttonText: { color: colors.white, fontSize: 16 },
   bottomContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    //backgroundColor: "tomato",
   },
   container: {
     flex: 1,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     width: "90%",
     color: colors.primary,
     fontSize: 18,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     borderRadius: 5,
     padding: 5,
     marginBottom: 10,

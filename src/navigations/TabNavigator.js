@@ -16,20 +16,20 @@ export default function TabNavigator({ navigation }) {
       screenOptions={{
         tabBarActiveBackgroundColor: colors.primary,
         tabBarInactiveBackgroundColor: colors.primary,
-        tabBarActiveTintColor: "gold",
+        tabBarActiveTintColor: colors.tabBar,
         tabBarLabelStyle: {
           fontSize: 12,
         },
         headerTitleAlign: "center",
         headerStyle: { backgroundColor: colors.primary },
-        headerTintColor: "#fff",
+        headerTintColor: colors.white,
         headerTitleStyle: { fontWeight: "bold" },
         headerRight: () => (
           <Pressable
             style={{ paddingRight: 10 }}
             onPress={() => navigation.navigate("Add Expenses")}
           >
-            <AntDesign name="plus" size={20} color="white" />
+            <AntDesign name="plus" size={20} color={colors.white} />
           </Pressable>
         ),
       }}
