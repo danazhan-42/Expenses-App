@@ -68,7 +68,7 @@ export default function AddExpenseScreen({ navigation, route }) {
             itemName: name,
             unitPrice: price,
             quantity: value,
-            isOverbudget: !isChecked,
+            isOverbudget: price * value > 500 && !isChecked,
           };
           updateToDB(route.params.entry.id, updateExpense);
           navigation.goBack();

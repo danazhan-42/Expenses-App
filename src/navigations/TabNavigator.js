@@ -48,7 +48,7 @@ export default function TabNavigator({ navigation }) {
         name="Overbudget"
         component={OverbudgetScreen}
         options={{
-          title: "Overbudget Expenses",
+          title: "Overbudget",
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons
               name="exclamation"
