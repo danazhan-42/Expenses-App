@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import AddExpenseScreen from "../screens/AddExpenseScreen";

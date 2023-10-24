@@ -3,12 +3,16 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { colors } from "../../colors";
+import PressableButton from "./PressableButton";
 
 export default function EntryItem({ entry, navigation }) {
   return (
-    <Pressable
-      style={({ pressed }) => [styles.container, pressed && styles.pressed]}
-      onPress={() => navigation.navigate("Add Expenses", { entry: entry })}
+    <PressableButton
+      pressedStyle={styles.pressed}
+      defaultStyle={styles.container}
+      pressedFunction={() =>
+        navigation.navigate("Add Expenses", { entry: entry })
+      }
     >
       <Text style={styles.text}>{entry.itemName}</Text>
       <View style={styles.expenseContainer}>
@@ -21,7 +25,7 @@ export default function EntryItem({ entry, navigation }) {
           </Text>
         </View>
       </View>
-    </Pressable>
+    </PressableButton>
   );
 }
 

@@ -11,23 +11,9 @@ export default function PressableButton({
   return (
     <Pressable
       onPress={pressedFunction}
-      style={({ pressed }) => [
-        styles.styleByDefault,
-        defaultStyle,
-        pressed && pressedStyle,
-      ]}
+      style={({ pressed }) => [defaultStyle, pressed && pressedStyle]}
     >
       {children}
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  styleByDefault: {
-    backgroundColor: colors.primary,
-    borderRadius: 5,
-    padding: 5,
-    width: 120,
-    alignItems: "center",
-  },
-});
