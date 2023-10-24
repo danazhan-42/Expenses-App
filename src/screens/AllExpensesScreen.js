@@ -7,19 +7,21 @@ import { QuerySnapshot, collection, onSnapshot } from "firebase/firestore";
 
 export default function AllExpensesScreen({ navigation }) {
   const [expenses, setExpenses] = useState([]);
-
   useEffect(() => {
-    onSnapshot(collection(database, "entries"), (querySnapshot) => {
-      if (!querySnapshot.empty) {
+    const unsubscribe = onSnapshot(
+      collection(database, "entries"),
+      (querySnapshot) => {
         let newArray = [];
-        // use a for loop to call .data() on each item of querySnapshot.docs
         querySnapshot.docs.forEach((docSnap) => {
           newArray.push({ ...docSnap.data(), id: docSnap.id });
         });
-
         setExpenses(newArray);
       }
-    });
+    );
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (

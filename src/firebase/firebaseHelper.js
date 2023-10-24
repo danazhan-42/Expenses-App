@@ -18,7 +18,8 @@ export async function writeToDB(entry) {
 
 export async function deleteToDB(id) {
   try {
-    await deleteDoc(doc(firestore, "entries", id));
+    await deleteDoc(doc(database, "entries", id));
+    console.log("Document deleted with ID: ", id);
   } catch (err) {
     console.log(err);
   }
@@ -27,6 +28,7 @@ export async function deleteToDB(id) {
 export async function updateToDB(id, entry) {
   try {
     await updateDoc(doc(database, "entries", id), entry);
+    console.log("Document updated with ID: ", id);
   } catch (err) {
     console.log(err);
   }

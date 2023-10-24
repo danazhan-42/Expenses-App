@@ -6,7 +6,6 @@ import AddExpenseScreen from "../screens/AddExpenseScreen";
 import TabNavigator from "./TabNavigator";
 import { AntDesign } from "@expo/vector-icons";
 import { deleteToDB } from "../firebase/firebaseHelper";
-import { firestore } from "firebase";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,15 +34,9 @@ export default function App() {
             headerRight: () => (
               <Pressable
                 style={{ paddingRight: 10 }}
-                onPress={async () => {
-                  if (
-                    route.params &&
-                    route.params.entry &&
-                    route.params.entry.id
-                  ) {
-                    await deleteToDB(route.params.entry.id);
-                    navigation.navigate("Entries");
-                  }
+                onPress={() => {
+                  deleteToDB(route.params.entry.id);
+                  navigation.goBack();
                 }}
               >
                 <AntDesign name="delete" size={20} color="white" />
