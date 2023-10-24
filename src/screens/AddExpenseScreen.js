@@ -10,6 +10,9 @@ export default function AddExpenseScreen({ navigation, route }) {
   const [name, setName] = useState(route.params?.entry?.itemName || "");
   const [price, setPrice] = useState(route.params?.entry?.unitPrice || "");
   const [isChecked, setChecked] = useState(false);
+  const [isOverbudget, setIsOverbudget] = useState(
+    route.params?.entry?.isOverbudget || null
+  );
   const isEditMode = route.params && route.params.entry;
 
   const numbers = [];
@@ -30,6 +33,7 @@ export default function AddExpenseScreen({ navigation, route }) {
       itemName: name,
       unitPrice: price,
       quantity: value,
+      isOverbudget: !!price * value > 500,
     };
 
     writeToDB(newExpense);
@@ -48,6 +52,8 @@ export default function AddExpenseScreen({ navigation, route }) {
       Alert.alert("Invalid input", "Please check your input values");
       return;
     }
+    const totalExpense = Number(price) * value;
+    const updatedIsOverbudget = totalExpense > 500 && !isChecked;
     Alert.alert("Important", "Are you sure you want to save the changes?", [
       { text: "Cancel", style: "cancel" },
       {
@@ -57,6 +63,7 @@ export default function AddExpenseScreen({ navigation, route }) {
             itemName: name,
             unitPrice: price,
             quantity: value,
+            isOverbudget: updatedIsOverbudget,
           };
           updateToDB(route.params.entry.id, updateExpense);
           navigation.goBack();
@@ -89,17 +96,19 @@ export default function AddExpenseScreen({ navigation, route }) {
         }}
       />
       <View style={styles.bottomContainer}>
-        <View style={styles.checkboxContainer}>
-          <Text>
-            This item is marked as overbudget. Select the checkbox if you would
-            like to approve it
-          </Text>
-          <Checkbox
-            value={isChecked}
-            onValueChange={setChecked}
-            style={styles.checkbox}
-          />
-        </View>
+        {isEditMode && isOverbudget ? (
+          <View style={styles.checkboxContainer}>
+            <Text style={{ color: colors.primary, fontWeight: "bold" }}>
+              This item is marked as overbudget. Select the checkbox if you
+              would like to approve it.
+            </Text>
+            <Checkbox
+              value={isChecked}
+              onValueChange={setChecked}
+              style={styles.checkbox}
+            />
+          </View>
+        ) : null}
         <View style={styles.button}>
           <PressableButton pressedFunction={handleCancel}>
             <Text style={{ color: "#fff", fontSize: 16 }}>Cancel</Text>

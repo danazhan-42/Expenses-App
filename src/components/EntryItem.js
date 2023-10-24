@@ -12,7 +12,7 @@ export default function EntryItem({ entry, navigation }) {
     >
       <Text style={styles.text}>{entry.itemName}</Text>
       <View style={styles.expenseContainer}>
-        {entry.quantity * entry.unitPrice > 500 && (
+        {entry.isOverbudget && (
           <Ionicons name="warning" size={28} color="gold" />
         )}
         <View style={styles.expense}>
