@@ -11,7 +11,7 @@ export default function AddExpenseScreen({ navigation, route }) {
   const [price, setPrice] = useState(route.params?.entry?.unitPrice || "");
   const [isChecked, setChecked] = useState(false);
   const [isOverbudget, setIsOverbudget] = useState(
-    route.params?.entry?.isOverbudget || null
+    route.params?.entry?.isOverbudget || false
   );
   const isEditMode = route.params && route.params.entry;
 
@@ -23,9 +23,16 @@ export default function AddExpenseScreen({ navigation, route }) {
   const [value, setValue] = useState(route.params?.entry?.quantity || null);
   const [items, setItems] = useState(numbers);
 
-  const handleSubmit = () => {
+  const isValidateInput = () => {
     if (!name || !price || isNaN(price) || Number(price) < 0 || !value) {
       Alert.alert("Invalid input", "Please check your input values");
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = () => {
+    if (!isValidateInput()) {
       return;
     }
 
@@ -33,7 +40,7 @@ export default function AddExpenseScreen({ navigation, route }) {
       itemName: name,
       unitPrice: price,
       quantity: value,
-      isOverbudget: !!price * value > 500,
+      isOverbudget: price * value > 500,
     };
 
     writeToDB(newExpense);
@@ -48,12 +55,10 @@ export default function AddExpenseScreen({ navigation, route }) {
   };
 
   const handleUpdate = () => {
-    if (!name || !price || isNaN(price) || Number(price) < 0 || !value) {
-      Alert.alert("Invalid input", "Please check your input values");
+    if (!isValidateInput()) {
       return;
     }
-    const totalExpense = Number(price) * value;
-    const updatedIsOverbudget = totalExpense > 500 && !isChecked;
+
     Alert.alert("Important", "Are you sure you want to save the changes?", [
       { text: "Cancel", style: "cancel" },
       {
@@ -63,7 +68,7 @@ export default function AddExpenseScreen({ navigation, route }) {
             itemName: name,
             unitPrice: price,
             quantity: value,
-            isOverbudget: updatedIsOverbudget,
+            isOverbudget: !isChecked,
           };
           updateToDB(route.params.entry.id, updateExpense);
           navigation.goBack();
@@ -91,6 +96,7 @@ export default function AddExpenseScreen({ navigation, route }) {
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
+        placeholder=""
         containerStyle={{
           width: "90%",
         }}
