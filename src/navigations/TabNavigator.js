@@ -7,6 +7,7 @@ import OverbudgetScreen from "../screens/OverbudgetScreen";
 import { Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../../colors";
+import PressableButton from "../components/PressableButton";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,12 +26,13 @@ export default function TabNavigator({ navigation }) {
         headerTintColor: colors.white,
         headerTitleStyle: { fontWeight: "bold" },
         headerRight: () => (
-          <Pressable
-            style={{ paddingRight: 10 }}
-            onPress={() => navigation.navigate("Add Expenses")}
+          <PressableButton
+            pressedFunction={() => navigation.navigate("Add Expenses")}
+            defaultStyle={{ paddingRight: 10 }}
+            pressedStyle={{ opacity: 0.8 }}
           >
             <AntDesign name="plus" size={20} color={colors.white} />
-          </Pressable>
+          </PressableButton>
         ),
       }}
     >
