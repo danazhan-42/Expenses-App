@@ -8,6 +8,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 export default function OverbudgetScreen({ navigation }) {
   const [expenses, setExpenses] = useState([]);
 
+  // Use onSnapshot to listen to realtime updates in Firestore
   useEffect(() => {
     onSnapshot(collection(database, "entries"), (querySnapshot) => {
       if (!querySnapshot.empty) {

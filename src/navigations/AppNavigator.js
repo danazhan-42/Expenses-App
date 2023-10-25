@@ -11,6 +11,7 @@ import PressableButton from "../components/PressableButton";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // handle the trash icon deletion functionality in Edit Screen
   const handleDelete = ({ route, navigation }) => {
     Alert.alert("Important", "Are you sure you want to delete it?", [
       { text: "Cancel", style: "cancel" },

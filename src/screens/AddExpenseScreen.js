@@ -1,28 +1,42 @@
 import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 import React, { useState } from "react";
+import Checkbox from "expo-checkbox";
+
 import { colors } from "../../colors";
 import PressableButton from "../components/PressableButton";
 import DropDownPicker from "react-native-dropdown-picker";
 import { writeToDB, updateToDB } from "../firebase/firebaseHelper";
-import Checkbox from "expo-checkbox";
 
+// Add expense screen is reused as Edit screen by conditional rendering
 export default function AddExpenseScreen({ navigation, route }) {
+  // Check if in edit mode or add mode
+  const isEditMode = route.params && route.params.entry;
+
+  // States for item details
   const [name, setName] = useState(route.params?.entry?.itemName || "");
   const [price, setPrice] = useState(route.params?.entry?.unitPrice || "");
-  const [isChecked, setChecked] = useState(false);
   const [isOverbudget, setIsOverbudget] = useState(
     route.params?.entry?.isOverbudget || false
   );
-  const isEditMode = route.params && route.params.entry;
 
+  // Set the limit 500 as a state variable
+  const [budgetLimit, setBudgetLimit] = useState(500);
+
+  // State for checkbox
+  const [isChecked, setChecked] = useState(false);
+
+  // Preparing number options for quantity dropdown
   const numbers = [];
   for (let i = 1; i <= 10; i++) {
     numbers.push({ label: i.toString(), value: i });
   }
+
+  // States related to dropdown picker
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(route.params?.entry?.quantity || null);
   const [items, setItems] = useState(numbers);
 
+  // Function to validate input fields
   const isValidateInput = () => {
     if (!name || !price || isNaN(price) || Number(price) < 0 || !value) {
       Alert.alert("Invalid input", "Please check your input values");
@@ -31,6 +45,7 @@ export default function AddExpenseScreen({ navigation, route }) {
     return true;
   };
 
+  // Handle submission for adding new expense
   const handleSubmit = () => {
     if (!isValidateInput()) {
       return;
@@ -40,13 +55,14 @@ export default function AddExpenseScreen({ navigation, route }) {
       itemName: name,
       unitPrice: price,
       quantity: value,
-      isOverbudget: price * value > 500,
+      isOverbudget: price * value > budgetLimit,
     };
 
     writeToDB(newExpense);
     navigation.goBack();
   };
 
+  // Handle cancel action
   const handleCancel = () => {
     setName("");
     setPrice("");
@@ -54,6 +70,7 @@ export default function AddExpenseScreen({ navigation, route }) {
     navigation.goBack();
   };
 
+  // Handle updates to existing expense
   const handleUpdate = () => {
     if (!isValidateInput()) {
       return;
@@ -68,7 +85,7 @@ export default function AddExpenseScreen({ navigation, route }) {
             itemName: name,
             unitPrice: price,
             quantity: value,
-            isOverbudget: price * value > 500 && !isChecked,
+            isOverbudget: price * value > budgetLimit && !isChecked,
           };
           updateToDB(route.params.entry.id, updateExpense);
           navigation.goBack();

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 import EntriesList from "../components/EntriesList";
 import { colors } from "../../colors";
@@ -8,6 +8,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 export default function AllExpensesScreen({ navigation }) {
   const [expenses, setExpenses] = useState([]);
 
+  // Use onSnapshot to listen to realtime updates in Firestore
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(database, "entries"),

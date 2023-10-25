@@ -4,7 +4,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AllExpensesScreen from "../screens/AllExpensesScreen";
 import OverbudgetScreen from "../screens/OverbudgetScreen";
-import { Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../../colors";
 import PressableButton from "../components/PressableButton";

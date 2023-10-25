@@ -7,6 +7,7 @@ import {
 } from "firebase/firestore";
 import { database } from "./firebaseSetup";
 
+// Helper function to write data to the firestore datebase
 export async function writeToDB(entry) {
   try {
     const docRef = await addDoc(collection(database, "entries"), entry);
@@ -16,6 +17,7 @@ export async function writeToDB(entry) {
   }
 }
 
+// Helper function to delete data
 export async function deleteToDB(id) {
   try {
     await deleteDoc(doc(database, "entries", id));
@@ -25,6 +27,7 @@ export async function deleteToDB(id) {
   }
 }
 
+// Helper function to update data
 export async function updateToDB(id, entry) {
   try {
     await updateDoc(doc(database, "entries", id), entry);

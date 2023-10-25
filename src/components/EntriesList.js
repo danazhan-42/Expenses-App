@@ -7,6 +7,7 @@ export default function EntriesList({ entries, navigation, overLimit }) {
   return (
     <View style={styles.container}>
       <FlatList
+        // Use the overLimit prop to filter entries
         data={
           overLimit
             ? entries.filter((entry) => entry.isOverbudget === true)
