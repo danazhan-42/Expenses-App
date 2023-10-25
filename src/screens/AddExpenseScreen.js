@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 import React, { useState } from "react";
 import Checkbox from "expo-checkbox";
 
-import { colors } from "../../colors";
+import { colors } from "../utility/colors";
 import PressableButton from "../components/PressableButton";
 import DropDownPicker from "react-native-dropdown-picker";
 import { writeToDB, updateToDB } from "../firebase/firebaseHelper";

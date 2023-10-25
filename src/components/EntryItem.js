@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { colors } from "../../colors";
+import { colors } from "../utility/colors";
 import PressableButton from "./PressableButton";
 
 export default function EntryItem({ entry, navigation }) {
