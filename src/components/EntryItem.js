@@ -20,7 +20,7 @@ export default function EntryItem({ entry, navigation }) {
           <Ionicons name="warning" size={28} color="gold" />
         )}
         <View style={styles.expense}>
-          <Text>
+          <Text style={{ fontWeight: "bold" }}>
             {entry.quantity} * {entry.unitPrice}
           </Text>
         </View>

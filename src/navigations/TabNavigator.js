@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 export default function TabNavigator({ navigation }) {
   return (
     <Tab.Navigator
+      // Implement the Add button + in both screens by screenOptions
       screenOptions={{
         tabBarActiveBackgroundColor: colors.primary,
         tabBarInactiveBackgroundColor: colors.primary,
@@ -49,7 +50,7 @@ export default function TabNavigator({ navigation }) {
         name="Overbudget"
         component={OverbudgetScreen}
         options={{
-          title: "Overbudget",
+          title: "Overbudget Expenses",
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons
               name="exclamation"
